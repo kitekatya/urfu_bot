@@ -39,4 +39,4 @@ class HTTPGetter:
         for subject in subjects:
             actions = ActionChains(browser)
             actions.move_to_element(subject).click().perform()
-            time.sleep(0.35)
+            time.sleep(0.5)
