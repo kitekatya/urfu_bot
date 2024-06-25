@@ -26,6 +26,9 @@ class Subject:
     def __iter__(self):
         return iter(self.heads)
 
+    def __getitem__(self, item):
+        return self.heads.__getitem__(item)
+
     def __str__(self):
         count_eq = 10
         s = f'{self.total}\n{self.general}\n'
