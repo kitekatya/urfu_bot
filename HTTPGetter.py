@@ -30,6 +30,9 @@ class HTTPGetter:
 
     @staticmethod
     def open_blocks(browser):
+        WebDriverWait(browser, 1).until(
+            EC.presence_of_element_located((By.ID, 'disciplines')))
+
         subjects = browser.find_element(By.ID, 'disciplines') \
             .find_elements(By.CLASS_NAME, "rating-discipline  ")
 
