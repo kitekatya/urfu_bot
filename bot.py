@@ -80,9 +80,9 @@ def update_info(user_id) -> str | None:
             for header in data_brs[user_id][subject]:
                 if header not in old[subject]:
                     old[subject][header] = dict()
-                for name_event in data_brs[user_id][subject]:
+                for name_event in data_brs[user_id][subject][header]:
                     if name_event not in old[subject][header]:
-                        mess += f'{subject} {name_event}:' \
+                        mess += f'{subject} {name_event} ' \
                                 f'{data_brs[user_id][subject][header][name_event]["dict"]}\n'
                     elif old[subject][header][name_event]['dict'] != \
                             data_brs[user_id][subject][header][name_event][
