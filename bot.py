@@ -65,6 +65,10 @@ def get_subject(msg: types.Message):
 
 
 def update_info(user_id) -> str | None:
+    if user_id not in data_brs:
+        bot.send_message(user_id, 'Вашего аккаунта нет')
+        return
+
     mess = ''
     old = data_brs[user_id]
     if try_get(user_id):
