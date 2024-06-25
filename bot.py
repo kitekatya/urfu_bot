@@ -123,8 +123,8 @@ def try_get(user_id):
         parser.parse()
         data_brs[user_id] = parser.brs
     except Exception as e:
-        print(e)
         bot.send_message(user_id, 'Произошла ошибка в запросе на сайт')
+        raise e
         return False
     return True
 
