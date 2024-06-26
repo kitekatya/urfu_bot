@@ -12,14 +12,26 @@ class Subject:
         self.heads[head] = dict()
 
     def add_event(self, head: str, event: str) -> None:
-        name, rank = self.get_name_and_rank(event)
-        self.heads[head][name] = dict()
-        self.heads[head][name]['str'] = event
-        self.heads[head][name]['dict'] = rank
+        events = event.split('\n')
+        prev_name = None
+        index = 0
+        for event in events:
+            name, rank = self.get_name_and_rank(event)
+            if name == prev_name:
+                new_name = prev_name + ' ' + str(index)
+                index += 1
+            else:
+                new_name = name
+                index = 0
+
+            self.heads[head][new_name] = dict()
+            self.heads[head][new_name]['str'] = event
+            self.heads[head][new_name]['dict'] = rank
+            prev_name = name
 
     @staticmethod
     def get_name_and_rank(event: str):
-        name = re.search(r'(\D+)\d+', event).group(1).strip()
+        name = re.search(r'(.+) — \d+', event).group(1).strip()
         rank = re.search(r'(\d+\.\d+)/\d+', event).group(1)
         return name, rank
 
