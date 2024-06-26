@@ -35,6 +35,8 @@ def start(msg: types.Message):
 
 @bot.message_handler(func=lambda msg: msg.text == update)
 def update_by_user(msg: types.Message):
+    if msg.from_user.id not in data_brs: return
+
     text = update_info(msg.from_user.id)
     if text is None: return
     if len(text) > 0: bot.send_message(msg.chat.id, text)
@@ -43,6 +45,8 @@ def update_by_user(msg: types.Message):
 
 @bot.message_handler(func=lambda msg: msg.text == subjects_text)
 def show_subject(msg: types.Message):
+    if msg.from_user.id not in data_brs: return
+
     mess = ''
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     for subject in data_brs[msg.from_user.id]:
@@ -124,7 +128,6 @@ def try_get(user_id):
         data_brs[user_id] = parser.brs
     except Exception as e:
         bot.send_message(user_id, 'Произошла ошибка в запросе на сайт')
-        raise e
         return False
     return True
 
@@ -138,6 +141,7 @@ def auto_update():
                                       f'обновился')
         if text is not None and len(text) > 0:
             bot.send_message(user_id, text)
+    bot.send_message(-1001931332770, f'auto upd {user_id}\n'+text)
     threading.Timer(30 * 60, auto_update).start()
 
 

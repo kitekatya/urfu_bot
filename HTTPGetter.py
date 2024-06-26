@@ -26,11 +26,11 @@ class HTTPGetter:
         browser.find_element("id", "userNameInput").send_keys(username)
         browser.find_element("id", "passwordInput").send_keys(password)
         browser.find_element("id", "submitButton").click()
-        WebDriverWait(browser, 1)
+        WebDriverWait(browser, 3)
 
     @staticmethod
     def open_blocks(browser):
-        WebDriverWait(browser, 1).until(
+        WebDriverWait(browser, 3).until(
             EC.presence_of_element_located((By.ID, 'disciplines')))
 
         subjects = browser.find_element(By.ID, 'disciplines') \
@@ -39,4 +39,4 @@ class HTTPGetter:
         for subject in subjects:
             actions = ActionChains(browser)
             actions.move_to_element(subject).click().perform()
-            time.sleep(0.5)
+            time.sleep(0.55)
