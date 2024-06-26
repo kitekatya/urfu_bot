@@ -141,7 +141,7 @@ def auto_update():
                                       f'обновился')
         if text is not None and len(text) > 0:
             bot.send_message(user_id, text)
-    bot.send_message(-1001931332770, f'auto upd {user_id}\n'+text)
+        bot.send_message(-1001931332770, f'auto upd {user_id}\n'+text)
     threading.Timer(30 * 60, auto_update).start()
 
 
