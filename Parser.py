@@ -11,7 +11,7 @@ class Parser:
 
     def parse(self):
         soup = bs4.BeautifulSoup(self.data, 'html.parser')
-        brss = soup.findAll(class_='discipline-info hidden show')
+        brss = soup.findAll(class_='show')
         subjects = soup.findAll('a', class_='rating-discipline info-open')
 
         for subject, brs in zip(subjects, brss):

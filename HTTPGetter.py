@@ -37,6 +37,7 @@ class HTTPGetter:
             .find_elements(By.CLASS_NAME, "rating-discipline  ")
 
         for subject in subjects:
+            if 'Не выбран' in subject.accessible_name: continue
             actions = ActionChains(browser)
             actions.move_to_element(subject).click().perform()
             time.sleep(0.55)
