@@ -94,6 +94,7 @@ def update_info(user_id) -> str | None:
                         mess += f'{subject} {name_event}: {old[subject][header][name_event]["dict"]}' \
                                 f' ➞ {data_brs[user_id][subject][header][name_event]["dict"]}\n'
         return mess.strip()
+    return
 
 
 def register_email(msg: types.Message):
