@@ -143,9 +143,12 @@ def auto_update():
         except Exception as e:
             bot.send_message(user_id, f'Там короч ошибка {e}, возможно БРС '
                                       f'обновился')
-        bot.send_message(-1001931332770, f'auto upd {user_id}\n'+text)
-    threading.Timer(30 * 60, auto_update).start()
+        bot.send_message(-1001931332770, f'auto upd {user_id}\n')
 
 
 def start():
     bot.polling()
+
+
+def start_update():
+    threading.Timer(30 * 60, auto_update).start()
