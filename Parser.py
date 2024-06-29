@@ -12,7 +12,7 @@ class Parser:
     def parse(self):
         soup = bs4.BeautifulSoup(self.data, 'html.parser')
         brss = soup.findAll(class_='show')
-        subjects = soup.findAll('a', class_='rating-discipline info-open')
+        subjects = soup.findAll('a', class_='info-open')
 
         for subject, brs in zip(subjects, brss):
             total = self.get_rid_whitespaces(subject.text)
@@ -59,5 +59,3 @@ class Parser:
 
     def get_rid_whitespaces(self, string: str):
         return ' '.join(string.split())
-
-
