@@ -33,11 +33,14 @@ class HTTPGetter:
         WebDriverWait(browser, 3).until(
             EC.presence_of_element_located((By.ID, 'disciplines')))
 
+        time.sleep(0.55)
+
         subjects = browser.find_element(By.ID, 'disciplines') \
             .find_elements(By.CLASS_NAME, "rating-discipline  ")
 
+        actions = ActionChains(browser)
+
         for subject in subjects:
             if 'Не выбран' in subject.accessible_name: continue
-            actions = ActionChains(browser)
             actions.move_to_element(subject).click().perform()
             time.sleep(0.55)
