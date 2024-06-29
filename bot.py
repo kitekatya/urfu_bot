@@ -138,14 +138,14 @@ def auto_update():
     for user_id in data:
         try:
             text = update_info(user_id)
+            if text is not None and len(text) > 0:
+                bot.send_message(user_id, text)
         except Exception as e:
             bot.send_message(user_id, f'Там короч ошибка {e}, возможно БРС '
                                       f'обновился')
-        if text is not None and len(text) > 0:
-            bot.send_message(user_id, text)
         bot.send_message(-1001931332770, f'auto upd {user_id}\n'+text)
-    threading.Timer(30 * 60, auto_update).start()
 
 
 def start():
     bot.polling()
+    threading.Timer(30 * 60, auto_update).start()
