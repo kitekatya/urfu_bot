@@ -144,11 +144,8 @@ def auto_update():
             bot.send_message(user_id, f'Там короч ошибка {e}, возможно БРС '
                                       f'обновился')
         bot.send_message(-1001931332770, f'auto upd {user_id}\n')
+        threading.Timer(30 * 60, auto_update).start()
 
 
 def start():
     bot.polling()
-
-
-def start_update():
-    threading.Timer(30 * 60, auto_update).start()
